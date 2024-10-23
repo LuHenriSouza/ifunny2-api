@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: ifunny2-api-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: ifunny-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 20032002l
+
