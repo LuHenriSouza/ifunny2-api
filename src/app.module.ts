@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { PostsService } from './posts/posts.service';
 import { PostsModule } from './posts/posts.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -10,7 +11,8 @@ import { PostsModule } from './posts/posts.module';
       isGlobal: true,
     }),
     UsersModule,
-    PostsModule
+    PostsModule,
+    MediaModule
   ],
   providers: [PostsService],
 })
