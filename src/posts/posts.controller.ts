@@ -1,17 +1,34 @@
-import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, InternalServerErrorException, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaService } from '../media/media.service';
+import { CreatePostDto } from './dto/create-post.dto';
+import { PostsService } from './posts.service';
 
 @Controller('posts')
 export class PostsController {
-    constructor(private readonly mediaService: MediaService) { }
+    constructor(
+        private readonly mediaService: MediaService,
+        private readonly postService: PostsService
+    ) { }
 
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', {
         limits: { fileSize: 10 * 1024 * 1024 }, // Limite de 10 MB
     }))
-    async uploadFile(@UploadedFile() file: Express.Multer.File) {
-        const result = await this.mediaService.uploadFile(file);
-        return { url: result.Location };  // Retorna o link do arquivo no Spaces
+    async createPost(
+        @UploadedFile() file: Express.Multer.File,
+        @Body() createPostDto: CreatePostDto,
+    ) {
+        try {
+            const result = await this.mediaService.uploadFile(file);
+            const postData = {
+                ...createPostDto,
+                url: result.Location,
+            };
+            await this.postService.savePost(postData);
+            return { url: result.Location };
+        } catch (e){
+            throw new InternalServerErrorException(e);
+        }
     }
 }
