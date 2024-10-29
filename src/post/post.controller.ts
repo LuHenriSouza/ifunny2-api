@@ -2,13 +2,13 @@ import { Body, Controller, InternalServerErrorException, Post, UploadedFile, Use
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaService } from '../media/media.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { PostsService } from './posts.service';
+import { PostService } from './post.service';
 
-@Controller('posts')
-export class PostsController {
+@Controller('post')
+export class PostController {
     constructor(
         private readonly mediaService: MediaService,
-        private readonly postService: PostsService
+        private readonly postService: PostService
     ) { }
 
     @Post('upload')
@@ -27,7 +27,7 @@ export class PostsController {
             };
             await this.postService.savePost(postData);
             return { url: result.Location };
-        } catch (e){
+        } catch (e) {
             throw new InternalServerErrorException(e);
         }
     }

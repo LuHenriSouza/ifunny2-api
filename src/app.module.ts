@@ -1,19 +1,23 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { PostsService } from './posts/posts.service';
-import { PostsModule } from './posts/posts.module';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
+import { LikeModule } from './like/like.module';
 import { MediaModule } from './media/media.module';
+import { CommentModule } from './comment/comment.module';
+import { CommentLikeModule } from './comment-like/comment-like.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UsersModule,
-    PostsModule,
-    MediaModule
-  ],
-  providers: [PostsService],
+    UserModule,
+    PostModule,
+    LikeModule,
+    MediaModule,
+    CommentModule,
+    CommentLikeModule,
+  ]
 })
 export class AppModule { }
