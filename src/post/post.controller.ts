@@ -3,6 +3,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaService } from '../media/media.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PostService } from './post.service';
+import { InsertPostDto } from './dto/insert-post.dto';
 
 @Controller('post')
 export class PostController {
@@ -21,9 +22,9 @@ export class PostController {
     ) {
         try {
             const result = await this.mediaService.uploadFile(file);
-            const postData = {
+            const postData: InsertPostDto = {
                 ...createPostDto,
-                url: result.Location,
+                media_url: result.Location,
             };
             await this.postService.savePost(postData);
             return { url: result.Location };

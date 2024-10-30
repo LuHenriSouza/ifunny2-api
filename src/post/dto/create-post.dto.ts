@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsArray, ArrayNotEmpty, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsArray, ArrayNotEmpty, IsUUID } from 'class-validator';
 
 export class CreatePostDto {
     @IsOptional()
@@ -7,14 +7,6 @@ export class CreatePostDto {
     tags?: string[]; // Tags relacionadas ao post
 
     @IsNotEmpty()
-    @IsString()
-    url: string; // URL do arquivo enviado para o DigitalOcean Spaces
-
-    @IsOptional()
-    @IsString()
-    thumbnailUrl?: string; // URL da miniatura, se aplicável
-
-    @IsNotEmpty()
     @IsUUID()
-    userId: string;
+    userId: string; // ID do usuário que criou o post
 }

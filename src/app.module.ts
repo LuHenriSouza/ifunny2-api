@@ -5,6 +5,7 @@ import { PostModule } from './post/post.module';
 import { LikeModule } from './like/like.module';
 import { MediaModule } from './media/media.module';
 import { CommentModule } from './comment/comment.module';
+import { DatabaseModule } from './database/database.module';
 import { CommentLikeModule } from './comment-like/comment-like.module';
 
 @Module({
@@ -17,6 +18,7 @@ import { CommentLikeModule } from './comment-like/comment-like.module';
     LikeModule,
     MediaModule,
     CommentModule,
+    DatabaseModule,
     CommentLikeModule,
   ]
 })
