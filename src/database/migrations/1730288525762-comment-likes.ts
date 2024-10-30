@@ -14,12 +14,12 @@ export class CommentLikes1730288525762 implements MigrationInterface {
                     default: "uuid_generate_v4()"
                 },
                 {
-                    name: "userId",
+                    name: "user_id",
                     type: "uuid",
                     isNullable: false,
                 },
                 {
-                    name: "commentId",
+                    name: "comment_id",
                     type: "uuid",
                     isNullable: false,
                 },
@@ -31,13 +31,13 @@ export class CommentLikes1730288525762 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    columnNames: ["userId"],
+                    columnNames: ["user_id"],
                     referencedTableName: "users",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE",
                 },
                 {
-                    columnNames: ["commentId"],
+                    columnNames: ["comment_id"],
                     referencedTableName: "comments",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE",

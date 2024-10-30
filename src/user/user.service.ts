@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
@@ -13,9 +13,13 @@ export class UserService {
     ) { }
 
     async create(newUser: CreateUserDto): Promise<User> {
-        newUser.password = await hashPassword(newUser.password);
-        const user = this.userRepository.create(newUser);
-        return await this.userRepository.save(user);
+        try {
+            newUser.password = await hashPassword(newUser.password);
+            const user = this.userRepository.create(newUser);
+            return await this.userRepository.save(user);
+        }catch (error) {
+            throw new BadRequestException(error.message);
+        }
     }
 }
 

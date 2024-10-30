@@ -13,7 +13,7 @@ export class Posts1730288491016 implements MigrationInterface {
                     default: "uuid_generate_v4()"
                 },
                 {
-                    name: "userId", // Adicione a coluna para o relacionamento com o usuário
+                    name: "user_id", // Adicione a coluna para o relacionamento com o usuário
                     type: "uuid",
                     isNullable: false // Define como não nula, se necessário
                 },
@@ -56,7 +56,7 @@ export class Posts1730288491016 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    columnNames: ["userId"],
+                    columnNames: ["user_id"],
                     referencedTableName: "users",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE", // Adapte conforme necessário

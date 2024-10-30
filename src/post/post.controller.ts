@@ -21,15 +21,14 @@ export class PostController {
         @Body() createPostDto: CreatePostDto,
     ) {
         try {
-            const result = await this.mediaService.uploadFile(file);
+            // const result = await this.mediaService.uploadFile(file);
             const postData: InsertPostDto = {
                 ...createPostDto,
-                media_url: result.Location,
+                media_url: 'https://www.google.com.br',
             };
-            await this.postService.savePost(postData);
-            return { url: result.Location };
+            return await this.postService.savePost(postData);
         } catch (e) {
-            throw new InternalServerErrorException(e);
+            throw new InternalServerErrorException(e.message);
         }
     }
 }

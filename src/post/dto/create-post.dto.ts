@@ -8,5 +8,5 @@ export class CreatePostDto {
 
     @IsNotEmpty()
     @IsUUID()
-    userId: string; // ID do usuário que criou o post
+    user_id: string; // ID do usuário que criou o post
 }

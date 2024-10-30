@@ -14,12 +14,12 @@ export class Likes1730288508894 implements MigrationInterface {
                     default: "uuid_generate_v4()"
                 },
                 {
-                    name: "userId",
+                    name: "user_id",
                     type: "uuid",
                     isNullable: false,
                 },
                 {
-                    name: "postId",
+                    name: "post_id",
                     type: "uuid",
                     isNullable: false,
                 },
@@ -31,13 +31,13 @@ export class Likes1730288508894 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    columnNames: ["userId"],
+                    columnNames: ["user_id"],
                     referencedTableName: "users",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE", // Adapte conforme necessário
                 },
                 {
-                    columnNames: ["postId"],
+                    columnNames: ["post_id"],
                     referencedTableName: "posts",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE", // Adapte conforme necessário

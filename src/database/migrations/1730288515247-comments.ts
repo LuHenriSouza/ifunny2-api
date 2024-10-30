@@ -14,12 +14,12 @@ export class Comments1730288515247 implements MigrationInterface {
                     default: "uuid_generate_v4()"
                 },
                 {
-                    name: "userId",
+                    name: "user_id",
                     type: "uuid",
                     isNullable: false,
                 },
                 {
-                    name: "postId",
+                    name: "post_id",
                     type: "uuid",
                     isNullable: false,
                 },
@@ -36,13 +36,13 @@ export class Comments1730288515247 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    columnNames: ["userId"],
+                    columnNames: ["user_id"],
                     referencedTableName: "users",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE",
                 },
                 {
-                    columnNames: ["postId"],
+                    columnNames: ["post_id"],
                     referencedTableName: "posts",
                     referencedColumnNames: ["id"],
                     onDelete: "CASCADE",

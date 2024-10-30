@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, JoinColumn } from 'typeorm';
 import { User } from 'src/user/entities/user.entity'
 import { Comment } from 'src/comment/entities/comment.entity';
 import { Like } from 'src/like/entities/like.entity';
@@ -9,6 +9,7 @@ export class Post {
     id: string;
 
     @ManyToOne(() => User, user => user.posts)
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     @Column('simple-array')
