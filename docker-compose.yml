@@ -3,9 +3,15 @@ services:
     image: postgres:latest
     container_name: ifunny2-api-postgres
     ports:
-      - "5433:5432"
+      - "5433:5432"  # Mapeia a porta 5432 do contêiner para a porta 5433 do host
     environment:
-      POSTGRES_DB: ifunny-db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 20032002l
+      POSTGRES_DB: ifunny-db      # Nome do banco de dados a ser criado
+      POSTGRES_USER: postgres      # Nome do usuário do banco de dados
+      POSTGRES_PASSWORD: 20032002l  # Senha do usuário do banco de dados
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d  # Pasta para scripts de inicialização
+      - ./data:/var/lib/postgresql/data      # Persistência dos dados do banco
 
+networks:
+  default:
+    driver: bridge

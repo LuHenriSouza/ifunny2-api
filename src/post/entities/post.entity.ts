@@ -32,6 +32,7 @@ export class Post {
     @CreateDateColumn()
     created_at: Date;
 
+    
     // Referências
     @OneToMany(() => Comment, comment => comment.post)
     comments: Comment[];

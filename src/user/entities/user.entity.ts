@@ -1,7 +1,7 @@
 import { CommentLike } from 'src/comment-like/entities/comment-like.entity';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { Post } from 'src/post/entities/post.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -20,6 +20,13 @@ export class User {
     @Column({ default: true })
     isActive: boolean;
 
+    @CreateDateColumn()
+    created_at: Date;
+
+    @UpdateDateColumn()
+    updated_at: Date;
+
+    
     // Referências
     @OneToMany(() => Post, post => post.user)
     posts: Post[];

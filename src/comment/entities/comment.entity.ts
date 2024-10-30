@@ -20,6 +20,7 @@ export class Comment {
     @CreateDateColumn()
     created_at: Date;
 
+    
     // referências
     @OneToMany(() => CommentLike, commentLike => commentLike.comment)
     commentLikes: CommentLike[];
