@@ -17,9 +17,13 @@ export class UserService {
             newUser.password = await hashPassword(newUser.password);
             const user = this.userRepository.create(newUser);
             return await this.userRepository.save(user);
-        }catch (error) {
+        } catch (error) {
             throw new BadRequestException(error.message);
         }
+    }
+
+    async getByEmail(email: string): Promise<User> {
+        return await this.userRepository.findOneBy({ email });
     }
 }
 
