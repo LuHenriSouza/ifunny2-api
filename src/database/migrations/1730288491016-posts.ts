@@ -31,7 +31,7 @@ export class Posts1730288491016 implements MigrationInterface {
                 {
                     name: "thumbnail_url",
                     type: "varchar", // Ajuste o tipo conforme necessário
-                    isNullable: false,
+                    isNullable: true,
                 },
                 {
                     name: "view_count",
