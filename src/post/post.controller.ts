@@ -21,10 +21,10 @@ export class PostController {
         @Body() createPostDto: CreatePostDto,
     ) {
         try {
-            // const result = await this.mediaService.uploadFile(file);
+            const result = await this.mediaService.uploadFile(file);
             const postData: InsertPostDto = {
                 ...createPostDto,
-                media_url: 'https://www.google.com.br',
+                media_url: result.Location,
             };
             return await this.postService.savePost(postData);
         } catch (e) {
